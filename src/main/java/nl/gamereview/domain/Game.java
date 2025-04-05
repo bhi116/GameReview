@@ -1,5 +1,10 @@
 package nl.gamereview.domain;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -15,14 +20,21 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotEmpty
     private String title;
+    @NotEmpty
     private String platform;
-    private int releaseYear;
+    @NotNull
+    @Min(value = 1900, message = "Release year must be after 1900")
+    @Max(value = 2100)
+    private Integer releaseYear;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private GameMode mode;
     
@@ -30,7 +42,7 @@ public class Game {
     public Game (){}
 
 
-    public Game(String title, String platform, int releaseYear, Genre genre, GameMode mode) {
+    public Game(String title, String platform, Integer releaseYear, Genre genre, GameMode mode) {
         this.title = title;
         this.platform = platform;
         this.releaseYear = releaseYear;
@@ -69,12 +81,12 @@ public class Game {
     }
 
 
-    public int getReleaseYear() {
+    public Integer getReleaseYear() {
         return releaseYear;
     }
 
 
-    public void setReleaseYear(int releaseYear) {
+    public void setReleaseYear(Integer releaseYear) {
         this.releaseYear = releaseYear;
     }
     

@@ -3,9 +3,11 @@ package nl.gamereview.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import nl.gamereview.domain.Game;
+import nl.gamereview.domain.GameMode;
 import nl.gamereview.domain.GameRepository;
 import nl.gamereview.domain.GenreRepository;
 
@@ -34,8 +36,15 @@ public class GameController {
     @GetMapping("/games/newgame")
     public String addGame(Model model) {
         model.addAttribute("game", new Game());
+        model.addAttribute("gameModes", GameMode.values());
         model.addAttribute("genres", genreRepository.findAll());
         return "addgame";
+    }
+
+    // Haetaan kaikki GameMode-arvot
+    @ModelAttribute("gameModes")
+    public GameMode[] gameModes() {
+        return GameMode.values();
     }
 
     // Tallennetaan peli
@@ -46,7 +55,7 @@ public class GameController {
         return "redirect:/games";
     }
     
-    //Poistetaan peli
+    //Poistetaan peli ID:n perusteella
     @GetMapping("/games/delete/{id}")
     public String deleteGame(@PathVariable("id") Long gameId, Model model) {
         gameRepository.deleteById(gameId);

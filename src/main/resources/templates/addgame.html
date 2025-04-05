@@ -26,7 +26,8 @@
         <div style="clear: both; display: block; height: 10px;"></div>
         <div class="form-group">
             <label for="releaseYear">Release Year:</label>
-            <input type="number" id="releaseYear" name="releaseYear" class="form-control" th:field="*{releaseYear}" required />
+            <input type="number" id="releaseYear" name="releaseYear" class="form-control"
+            th:field="*{releaseYear}" required min="1900" max="2100" />
         </div>
 
         <div style="clear: both; display: block; height: 10px;"></div>
@@ -43,9 +44,9 @@
         <div class="form-group">
             <label for="mode">Game Mode:</label>
             <select id="mode" name="mode" class="form-control" th:field="*{mode}" required>
-                <option value="SINGLEPLAYER">Singleplayer</option>
-                <option value="MULTIPLAYER">Multiplayer</option>
-                <option value="BOTH">Both</option>
+                <option th:each="mode : ${gameModes}" 
+                        th:value="${mode.name()}" 
+                        th:text="${mode.name()}"></option>
             </select>
         </div>
         <div style="clear: both; display: block; height: 20px;"></div>

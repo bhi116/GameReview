@@ -60,8 +60,8 @@ public class GamereviewApplication {
 				log.info(genre.toString());
 			}
 
-			// Lisätään pari peliä valmiiksi
-			Game g1 = new Game("Phasmophobia", "PC", 2020, horror,GameMode.MULTIPLAYER);
+			// Lisätään muutama peli valmiiksi
+			Game g1 = new Game("Phasmophobia", "PC", 2020, horror, GameMode.MULTIPLAYER);
 			Game g2 = new Game("Overwatch 2", "PS5", 2023, shooter, GameMode.MULTIPLAYER);
 			Game g3 = new Game("Dead by Daylight", "PS5", 2020, horror, GameMode.MULTIPLAYER);
 

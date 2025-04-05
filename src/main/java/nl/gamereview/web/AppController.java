@@ -46,7 +46,7 @@ public class AppController {
         return "redirect:/reviews";
     }
 
-    // Poistetaan arvostelu
+    // Poistetaan arvostelu ID:n perusteella
     @GetMapping("/reviews/delete/{id}")
         public String deleteReview(@PathVariable("id") Long revId, Model model) {
             reviewRepository.deleteById(revId);

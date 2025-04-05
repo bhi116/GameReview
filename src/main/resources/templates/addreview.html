@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <title>Add review</title>
+</head>
+<body>
+
+    <h1>Add a New Review</h1>
+
+    <form th:action="@{/reviews/save}" th:object="${review}" method="post">
+
+        <label for="game">Game:</label>
+        <select id="game" name="game.id">
+            <option th:each="game : ${games}"
+                    th:value="${game.id}"
+                    th:text="${game.title}">
+            </option>
+        </select>
+        <br/><br/>
+
+        <label for="rating">Rating (1–10):</label>
+        <input type="number" id="rating" name="rating" min="1" max="10"
+               th:field="*{rating}" />
+        <br/><br/>
+
+        <label for="text">Comment:</label><br/>
+        <textarea id="comment" name="comment" rows="5" cols="50"
+                  th:field="*{comment}"></textarea>
+        <br/><br/>
+
+        <button type="submit">Submit Review</button>
+
+    </form>
+    <a th:href="@{/reviews}">
+        <button>Go Back</button>
+    </a>
+
+</body>
+</html>

@@ -9,8 +9,33 @@
 </head>
 <body>
     <h1>Game reviews</h1>
-    <div class="col-md-4">
-		<h3>Welcome</h3>
-    </div>
+    <div>
+      <table>
+          <thead>
+              <tr>
+                  <th>Game</th>
+                  <th>Genre</th>
+                  <th>Rating</th>
+                  <th>Comment</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr th:each="review : ${reviews}">
+                  <td th:text="${review.game.title}">Game Title</td>
+                  <td th:text="${review.game.genre.name}">Game Genre</td>
+                  <td th:text="${review.rating}">Rating</td>
+                  <td th:text="${review.comment}">Comment</td>
+                  <td>
+                    <a th:href="@{/reviews/delete/{id}(id=${review.revId})}" class="btn btn-danger">Poista</a>
+                </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <a th:href="@{/reviews/new}" class="btn btn-primary">Add New Review</a>
+    <a th:href="@{/games}" class="btn btn-info">Games</a>
+  </div>
 </body>
 </html>

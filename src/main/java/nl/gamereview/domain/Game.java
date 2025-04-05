@@ -6,6 +6,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Game {
@@ -13,9 +15,13 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
+    private String title;
     private String platform;
     private int releaseYear;
+
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
 
     @Enumerated(EnumType.STRING)
     private GameMode mode;
@@ -24,10 +30,11 @@ public class Game {
     public Game (){}
 
 
-    public Game(String name, String platform, int releaseYear, GameMode mode) {
-        this.name = name;
+    public Game(String title, String platform, int releaseYear, Genre genre, GameMode mode) {
+        this.title = title;
         this.platform = platform;
         this.releaseYear = releaseYear;
+        this.genre = genre;
         this.mode = mode;
     }
 
@@ -42,13 +49,13 @@ public class Game {
     }
 
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
 
@@ -70,6 +77,15 @@ public class Game {
     public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
     }
+    
+    public Genre getGenre() {
+        return genre;
+    }
+
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
 
 
     public GameMode getMode() {
@@ -84,10 +100,9 @@ public class Game {
 
     @Override
     public String toString() {
-        return "Game [id=" + id + ", name=" + name + ", platform=" + platform + ", releaseYear=" + releaseYear
-                + ", mode=" + mode + "]";
+        return "Game [id=" + id + ", title=" + title + ", platform=" + platform + ", releaseYear=" + releaseYear
+                + ", genre=" + genre + ", mode=" + mode + "]";
     }
-
   
 
 }

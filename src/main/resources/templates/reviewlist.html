@@ -10,13 +10,14 @@
 <body>
     <h1>Game reviews</h1>
     <div>
-      <table>
+      <table class="table table-striped">
           <thead>
               <tr>
                   <th>Game</th>
                   <th>Genre</th>
                   <th>Rating</th>
                   <th>Comment</th>
+                  <th></th>
               </tr>
           </thead>
           <tbody>
@@ -24,7 +25,7 @@
                   <td th:text="${review.game.title}">Game Title</td>
                   <td th:text="${review.game.genre.name}">Game Genre</td>
                   <td th:text="${review.rating}">Rating</td>
-                  <td th:text="${review.comment}">Comment</td>
+                  <td th:text="${review.comment}" style="word-break: break-word; max-width: 350px;">Comment</td>
                   <td>
                     <a th:href="@{/reviews/delete/{id}(id=${review.revId})}" class="btn btn-danger">Poista</a>
                 </td>
@@ -34,8 +35,8 @@
   </div>
 
   <div style="margin-top: 20px;">
-    <a th:href="@{/reviews/new}" class="btn btn-primary">Add New Review</a>
-    <a th:href="@{/games}" class="btn btn-info">Games</a>
+    <a th:href="@{/reviews/new}" class="btn btn-success">Add New Review</a>
+    <a th:href="@{/games}" class="btn btn-warning">Games</a>
   </div>
 </body>
 </html>

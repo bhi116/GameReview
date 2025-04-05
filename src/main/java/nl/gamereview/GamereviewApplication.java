@@ -12,6 +12,7 @@ import nl.gamereview.domain.GameMode;
 import nl.gamereview.domain.GameRepository;
 import nl.gamereview.domain.Genre;
 import nl.gamereview.domain.GenreRepository;
+import nl.gamereview.domain.Review;
 import nl.gamereview.domain.ReviewRepository;
 
 @SpringBootApplication
@@ -62,16 +63,30 @@ public class GamereviewApplication {
 			// Lisätään pari peliä valmiiksi
 			Game g1 = new Game("Phasmophobia", "PC", 2020, horror,GameMode.MULTIPLAYER);
 			Game g2 = new Game("Overwatch 2", "PS5", 2023, shooter, GameMode.MULTIPLAYER);
+			Game g3 = new Game("Dead by Daylight", "PS5", 2020, horror, GameMode.MULTIPLAYER);
 
 			//Tallennetaan pelit tietokantaan
 			gameRepository.save(g1);
 			gameRepository.save(g2);
+			gameRepository.save(g3);
 
 			log.info("fetch all games");
 			for (Game game : gameRepository.findAll()){
 				log.info(game.toString());
 			}
 
+			// Lisätään pari arvostelua valmiiksi
+			Review r1 = new Review(g1, 9, "Hauska ja pelottava peli kavereiden kanssa");
+			Review r2 = new Review(g3, 9, "Hyvä peli");
+
+			// Tallennetaan arvostelut tietokantaan
+			reviewRepository.save(r1);
+			reviewRepository.save(r2);
+
+			log.info("fetch all reviews");
+			for (Review review : reviewRepository.findAll()){
+				log.info(review.toString());
+			}
 		};
 	}
 

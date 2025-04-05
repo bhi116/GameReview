@@ -17,6 +17,7 @@
                 <th>Release Year</th>
                 <th>Genre</th>
                 <th>Game mode</th>
+                <th></th>
             </tr>
         </thead>
 
@@ -31,11 +32,7 @@
             </tr>
         </tbody>
     </table>
-    <a th:href="@{/games/newgame}">
-        <button>Add New Game</button>
-    </a>
-    <a th:href="@{/reviews}">
-        <button>Go Back</button>
-    </a>
+    <a th:href="@{/games/newgame}" class="btn btn-success">Add New Game</a>
+    <a th:href="@{/reviews}" class="btn btn-secondary">Go Back</a>
 </body>
 </html>

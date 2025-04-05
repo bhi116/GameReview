@@ -32,12 +32,11 @@
                   th:field="*{comment}"></textarea>
         <br/><br/>
 
-        <button type="submit">Submit Review</button>
+        <button type="submit" class="btn btn-success">Submit Review</button>
 
     </form>
-    <a th:href="@{/reviews}">
-        <button>Go Back</button>
-    </a>
+    <div style="clear: both; display: block; height: 10px;"></div>
+    <a th:href="@{/reviews}" class="btn btn-secondary">Go back</a>
 
 </body>
 </html>

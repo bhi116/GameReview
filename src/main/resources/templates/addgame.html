@@ -17,16 +17,19 @@
             <input type="text" id="title" name="title" class="form-control" th:field="*{title}" required />
         </div>
 
+        <div style="clear: both; display: block; height: 10px;"></div>
         <div class="form-group">
             <label for="platform">Platform:</label>
             <input type="text" id="platform" name="platform" class="form-control" th:field="*{platform}" required />
         </div>
 
+        <div style="clear: both; display: block; height: 10px;"></div>
         <div class="form-group">
             <label for="releaseYear">Release Year:</label>
             <input type="number" id="releaseYear" name="releaseYear" class="form-control" th:field="*{releaseYear}" required />
         </div>
 
+        <div style="clear: both; display: block; height: 10px;"></div>
         <div class="form-group">
             <label for="genre">Genre:</label>
             <select id="genre" name="genre.genreId" class="form-control" th:field="*{genre.genreId}" required>
@@ -36,6 +39,7 @@
             </select>
         </div>
 
+        <div style="clear: both; display: block; height: 10px;"></div>
         <div class="form-group">
             <label for="mode">Game Mode:</label>
             <select id="mode" name="mode" class="form-control" th:field="*{mode}" required>
@@ -44,15 +48,14 @@
                 <option value="BOTH">Both</option>
             </select>
         </div>
-
+        <div style="clear: both; display: block; height: 20px;"></div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">Add Game</button>
+            <button type="submit" class="btn btn-success">Add Game</button>
         </div>
         
     </form>
-    <a th:href="@{/games}">
-        <button>Go Back</button>
-    </a>
+    <div style="clear: both; display: block; height: 10px;"></div>
+    <a th:href="@{/games}" class="btn btn-secondary">Go Back</a>
     
 </body>
 </html>

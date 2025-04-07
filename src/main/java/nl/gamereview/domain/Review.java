@@ -1,5 +1,7 @@
 package nl.gamereview.domain;
 
+import javax.validation.constraints.Size;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +21,7 @@ public class Review {
     private Game game;
 
     private int rating;
+    @Size(max = 255, message = "Comment cannot be longer than 255 characters")
     private String comment;
 
     public Review (){}

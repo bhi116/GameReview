@@ -76,8 +76,8 @@ public class GamereviewApplication {
 			}
 
 			// Lisätään pari arvostelua valmiiksi
-			Review r1 = new Review(g1, 9, "Hauska ja pelottava peli kavereiden kanssa");
-			Review r2 = new Review(g3, 9, "Hyvä peli");
+			Review r1 = new Review(g1, 4, "Hauska ja pelottava peli kavereiden kanssa");
+			Review r2 = new Review(g3, 3, "Hyvä peli");
 
 			// Tallennetaan arvostelut tietokantaan
 			reviewRepository.save(r1);

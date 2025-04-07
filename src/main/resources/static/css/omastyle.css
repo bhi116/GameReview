@@ -1,0 +1,41 @@
+h1 {
+    color: #d44ba2;
+}
+
+/* napit*/
+#omagame {
+    background-color: #d44ba2;
+    color: white;
+    border-color: #d44ba2;
+}
+
+#omagame:hover {
+    background-color: #ac3e84;
+}
+
+#addbtn {
+    background-color: rgb(89, 202, 41);
+    border-color: rgb(89, 202, 41);
+}
+
+#addbtn:hover {
+    background-color: rgb(74, 171, 33);
+}
+
+#backbtn {
+    background-color: rgb(112, 190, 220);
+    border-color: rgb(112, 190, 220);
+}
+
+#backbtn:hover {
+    background-color: rgb(103, 169, 195);
+}
+
+/*form kentät*/
+ .kapea {
+    width: 400px;
+ }
+
+ .container {
+    margin-top: 20px;
+ }

@@ -5,38 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <link type="text/css" rel="stylesheet" href="/css/omastyle.css">
     <title>Add review</title>
 </head>
 <body>
 
+    <div class="container">
     <h1>Add a New Review</h1>
 
     <form th:action="@{/reviews/save}" th:object="${review}" method="post">
 
         <label for="game">Game:</label>
-        <select id="game" name="game.id">
+        <select id="game" name="game.id" class="form-control kapea">
             <option th:each="game : ${games}"
                     th:value="${game.id}"
                     th:text="${game.title}">
             </option>
         </select>
-        <br/><br/>
 
-        <label for="rating">Rating (1–10):</label>
-        <input type="number" id="rating" name="rating" min="1" max="10"
+
+        <label for="rating">Rating (1–5):</label>
+        <input type="number" id="rating" class="form-control kapea" name="rating" min="1" max="5"
                th:field="*{rating}" />
-        <br/><br/>
+
 
         <label for="text">Comment:</label><br/>
-        <textarea id="comment" name="comment" rows="5" cols="50"
-                  th:field="*{comment}"></textarea>
-        <br/><br/>
+        <textarea id="comment" name="comment" class="form-control kapea" rows="5" cols="50"
+        maxlength="255" th:field="*{comment}"></textarea>
+        <small id="charCount">255 characters left</small>
+        <br></br>
 
-        <button type="submit" class="btn btn-success">Submit Review</button>
+        <button type="submit" class="btn btn-success" Id="addbtn">Submit Review</button>
 
     </form>
     <div style="clear: both; display: block; height: 10px;"></div>
-    <a th:href="@{/reviews}" class="btn btn-secondary">Go back</a>
+    <a th:href="@{/reviews}" class="btn btn-secondary" id="backbtn">Go back</a>
 
+    <!-- Kommentti merkkilaskuri -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const commentInput = document.getElementById('comment');
+            const charCount = document.getElementById('charCount');
+            const maxLength = 255;
+      
+            commentInput.addEventListener('input', function () {
+                const remaining = maxLength - commentInput.value.length;
+                charCount.textContent = `${remaining} characters left`;
+            });
+        });
+    </script>   
+    </div>
 </body>
 </html>

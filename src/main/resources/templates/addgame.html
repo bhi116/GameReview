@@ -5,35 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <link type="text/css" rel="stylesheet" href="/css/omastyle.css">
     <title>Add New Game</title>
 </head>
 <body>
 
+    <div class="container">
     <h1>Add a New Game</h1>
     <form th:action="@{/games/savegame}" th:object="${game}" method="post">
     
         <div class="form-group">
             <label for="title">Game Title:</label>
-            <input type="text" id="title" name="title" class="form-control" th:field="*{title}" required />
+            <input type="text" id="title" name="title" class="form-control kapea" th:field="*{title}" required />
         </div>
 
         <div style="clear: both; display: block; height: 10px;"></div>
         <div class="form-group">
             <label for="platform">Platform:</label>
-            <input type="text" id="platform" name="platform" class="form-control" th:field="*{platform}" required />
+            <input type="text" id="platform" name="platform" class="form-control kapea" th:field="*{platform}" required />
         </div>
 
         <div style="clear: both; display: block; height: 10px;"></div>
         <div class="form-group">
             <label for="releaseYear">Release Year:</label>
-            <input type="number" id="releaseYear" name="releaseYear" class="form-control"
-            th:field="*{releaseYear}" required min="1900" max="2100" />
+            <input type="number" id="releaseYear" name="releaseYear" class="form-control kapea"
+            th:field="*{releaseYear}" required min="1900" max="2025" />
         </div>
 
         <div style="clear: both; display: block; height: 10px;"></div>
         <div class="form-group">
             <label for="genre">Genre:</label>
-            <select id="genre" name="genre.genreId" class="form-control" th:field="*{genre.genreId}" required>
+            <select id="genre" name="genre.genreId" class="form-control kapea" th:field="*{genre.genreId}" required>
                 <option th:each="genre : ${genres}"
                         th:value="${genre.genreId}"
                         th:text="${genre.name}"></option>
@@ -43,7 +45,7 @@
         <div style="clear: both; display: block; height: 10px;"></div>
         <div class="form-group">
             <label for="mode">Game Mode:</label>
-            <select id="mode" name="mode" class="form-control" th:field="*{mode}" required>
+            <select id="mode" name="mode" class="form-control kapea" th:field="*{mode}" required>
                 <option th:each="mode : ${gameModes}" 
                         th:value="${mode.name()}" 
                         th:text="${mode.name()}"></option>
@@ -51,12 +53,12 @@
         </div>
         <div style="clear: both; display: block; height: 20px;"></div>
         <div class="form-group">
-            <button type="submit" class="btn btn-success">Add Game</button>
+            <button type="submit" class="btn btn-success" id="addbtn">Add Game</button>
         </div>
         
     </form>
     <div style="clear: both; display: block; height: 10px;"></div>
-    <a th:href="@{/games}" class="btn btn-secondary">Go Back</a>
-    
+    <a th:href="@{/games}" class="btn btn-secondary" id="backbtn">Go Back</a>
+    </div>
 </body>
 </html>

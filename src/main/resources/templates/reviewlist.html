@@ -35,9 +35,10 @@
                           <i class="fa-solid fa-star" style="color: gold;"></i>
                         </span>
                         
-                        <!-- Tyhjät tähdet -->
-                        <span th:each="i : ${#numbers.sequence(1, 5 - review.rating)}">
-                          <i class="fa-regular fa-star" style="color: gold;"></i>
+                        <!-- Tyhjät tähdet, jos arvosana alle 5 -->
+                        <span th:if="${review.rating &lt 5}"
+                        th:each="i : ${#numbers.sequence(1, 5 - review.rating)}">
+                        <i class="fa-regular fa-star" style="color: gold;"></i>
                         </span>
                       </td>
                     <td th:text="${review.comment}" style="word-break: break-word; max-width: 250px; padding-right: 15px;">Comment</td>

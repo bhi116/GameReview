@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container">
-    <h1>Game reviews</h1>
+        <h1>Game Reviews</h1>
     <div>
         <table class="table table-striped">
             <thead>
@@ -43,7 +43,7 @@
                       </td>
                     <td th:text="${review.comment}" style="word-break: break-word; max-width: 250px; padding-right: 15px;">Comment</td>
                     <td>
-                        <a th:href="@{/reviews/delete/{id}(id=${review.revId})}" class="btn btn-danger">Poista</a>
+                        <a th:href="@{/reviews/delete/{id}(id=${review.revId})}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             </tbody>

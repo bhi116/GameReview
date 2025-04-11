@@ -21,14 +21,20 @@ public class Review {
     private Game game;
 
     private int rating;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private AppUser user;
+
     @Size(max = 255, message = "Comment cannot be longer than 255 characters")
     private String comment;
 
     public Review (){}
 
-    public Review(Game game, int rating, String comment) {
+    public Review(Game game, int rating, AppUser user, String comment) {
         this.game = game;
         this.rating = rating;
+        this.user = user;
         this.comment = comment;
     }
 
@@ -48,6 +54,15 @@ public class Review {
         this.rating = rating;
     }
 
+    public AppUser getUser() {
+        return user;
+    }
+
+    public void setUser(AppUser user) {
+        this.user = user;
+    }
+
+
     public String getComment() {
         return comment;
     }
@@ -66,7 +81,8 @@ public class Review {
 
     @Override
     public String toString() {
-        return "Review [revId=" + revId + ", game=" + game + ", rating=" + rating + ", comment=" + comment + "]";
+        return "Review [revId=" + revId + ", game=" + game + ", rating=" + rating + ", user=" + user + ", comment="
+                + comment + "]";
     }
-
+    
 }

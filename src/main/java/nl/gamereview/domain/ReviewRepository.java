@@ -7,4 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface ReviewRepository extends CrudRepository<Review, Long>{
     List<Review> findByRating(int rating);
     List<Review> findByGame(Game game);
+    List<Review> findByUser(AppUser user);
 }

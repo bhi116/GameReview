@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import nl.gamereview.domain.AppUser;
+import nl.gamereview.domain.AppUserRepository;
 import nl.gamereview.domain.Game;
 import nl.gamereview.domain.GameRepository;
 import nl.gamereview.domain.Review;
@@ -18,11 +20,15 @@ public class ReviewRepoTest {
     private ReviewRepository reviewRepository;
     @Autowired
     private GameRepository gameRepository;
+    @Autowired
+    private AppUserRepository userRepository;
 
     @Test
     public void createNewReview() {
         List<Game> games = gameRepository.findByTitle("Phasmophobia");
-        Review review = new Review(games.get(0), 4, "Fun");
+        AppUser user2 = new AppUser("user2", "user2123", "USER");
+        userRepository.save(user2);
+        Review review = new Review(games.get(0), 4, user2, "Fun");
         reviewRepository.save(review);
         assertThat(review.getGame().getTitle()).isEqualTo("Phasmophobia");
     }

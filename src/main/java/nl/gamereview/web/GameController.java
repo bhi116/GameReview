@@ -1,5 +1,6 @@
 package nl.gamereview.web;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,6 +58,7 @@ public class GameController {
     
     //Poistetaan peli ID:n perusteella
     @GetMapping("/games/delete/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteGame(@PathVariable("id") Long gameId, Model model) {
         gameRepository.deleteById(gameId);
         return "redirect:/games";

@@ -6,7 +6,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import nl.gamereview.domain.AppUser;
+import nl.gamereview.domain.AppUserRepository;
 import nl.gamereview.domain.Game;
 import nl.gamereview.domain.GameMode;
 import nl.gamereview.domain.GameRepository;
@@ -25,7 +28,13 @@ public class GamereviewApplication {
 	}
 
 	@Bean
-	public CommandLineRunner tiedot(GameRepository gameRepository, ReviewRepository reviewRepository, GenreRepository genreRepository){
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+	@Bean
+	public CommandLineRunner tiedot(GameRepository gameRepository, ReviewRepository reviewRepository,
+	GenreRepository genreRepository, AppUserRepository userRepository, BCryptPasswordEncoder passwordEncoder){
 		return (args) -> {
 			// Lisätään genrejä
 			Genre horror = new Genre("Horror");
@@ -74,10 +83,18 @@ public class GamereviewApplication {
 			for (Game game : gameRepository.findAll()){
 				log.info(game.toString());
 			}
+			// Lisätään käyttäjiä
+            AppUser admin = new AppUser("admin", passwordEncoder.encode("admin123"),  "ADMIN");
+            AppUser user = new AppUser("user", passwordEncoder.encode("user123"),  "USER");
+
+            userRepository.save(admin);
+            userRepository.save(user);
+
+            log.info("Users added!");
 
 			// Lisätään pari arvostelua valmiiksi
-			Review r1 = new Review(g1, 4, "Hauska ja pelottava peli kavereiden kanssa");
-			Review r2 = new Review(g3, 3, "Hyvä peli");
+			Review r1 = new Review(g1, 4, admin, "Hauska ja pelottava peli kavereiden kanssa");
+			Review r2 = new Review(g3, 3, user, "Hyvä peli");
 
 			// Tallennetaan arvostelut tietokantaan
 			reviewRepository.save(r1);
@@ -87,6 +104,7 @@ public class GamereviewApplication {
 			for (Review review : reviewRepository.findAll()){
 				log.info(review.toString());
 			}
+
 		};
 	}
 

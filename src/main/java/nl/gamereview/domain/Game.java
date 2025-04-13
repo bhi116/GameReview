@@ -26,7 +26,7 @@ public class Game {
     private String platform;
     @NotNull
     @Min(value = 1900, message = "Release year must be after 1900")
-    @Max(value = 2100)
+    @Max(value = 2025)
     private Integer releaseYear;
 
     @NotNull

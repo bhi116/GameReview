@@ -59,7 +59,7 @@ public class AppController {
         String username = auth.getName();
 
         AppUser user = userRepository.findByUsername(username);
-        review.setUser(user);  // Tässä liitetään käyttäjä
+        review.setUser(user);
         reviewRepository.save(review);
         System.out.println("Tallennettu arvostelu: " + review);
         return "redirect:/reviews";
@@ -73,10 +73,10 @@ public class AppController {
         if (review != null && review.getUser().getUsername().equals(principal.getName())) {
             reviewRepository.deleteById(revId);
         } else {
-            // Ohjataan virheviestillä, jos käyttäjä ei saa poistaa
-            return "redirect:/reviews?error=forbidden";
+            return "redirect:/reviews?error";
         }
-            return "redirect:/reviews";
+
+        return "redirect:/reviews";
         }
     
     

@@ -48,7 +48,8 @@
             <select id="mode" name="mode" class="form-control kapea" th:field="*{mode}" required>
                 <option th:each="mode : ${gameModes}" 
                         th:value="${mode.name()}" 
-                        th:text="${mode.name()}"></option>
+                        th:text="${mode.name()}">
+                </option>
             </select>
         </div>
         <div style="clear: both; display: block; height: 20px;"></div>

@@ -10,10 +10,12 @@
     <title>Game reviews</title>
 </head>
 <body>
+    <!--Cannot delete review alert-->
     <div th:if="${param.error}" class="alert alert-danger alert-dismissible fade show" role="alert">
         <i class="fa-solid fa-triangle-exclamation me-2"></i> You can't delete this review
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
+
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>Game Reviews</h1>

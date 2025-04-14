@@ -36,9 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="review : ${reviews}"
-                th:class="${review.rating >= 4} ? 'rating-good' :
-                (${review.rating >= 2} ? 'rating-medium' : 'rating-bad')">
+                <tr th:each="review : ${reviews}">
                     <td th:text="${review.game.title}">Game Title</td>
                     <td th:text="${review.game.genre.name}">Game Genre</td>
                     <td>

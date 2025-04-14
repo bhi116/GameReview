@@ -1,7 +1,7 @@
 package nl.gamereview.domain;
 
-import javax.validation.constraints.Size;
 
+import jakarta.validation.constraints.Size;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

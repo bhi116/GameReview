@@ -51,7 +51,7 @@ public class GameController {
 
     // Tallennetaan peli
     @PostMapping("/games/savegame")
-    public String saveGame(@Valid Game game) {
+    public String saveGame(@Valid @ModelAttribute Game game) {
         gameRepository.save(game);
         System.out.println("Tallennettu peli: " + game);
         return "redirect:/games";

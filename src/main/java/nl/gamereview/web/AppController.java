@@ -2,6 +2,8 @@ package nl.gamereview.web;
 
 import java.security.Principal;
 
+import javax.validation.Valid;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -54,7 +56,7 @@ public class AppController {
 
     // Tallennetaan review
     @PostMapping("/reviews/save")
-    public String saveReview(@ModelAttribute Review review) {
+    public String saveReview(@Valid @ModelAttribute Review review) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
 

@@ -1,5 +1,7 @@
 package nl.gamereview.web;
 
+import javax.validation.Valid;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,7 +52,7 @@ public class GameController {
 
     // Tallennetaan peli
     @PostMapping("/games/savegame")
-    public String saveGame(Game game) {
+    public String saveGame(@Valid Game game) {
         gameRepository.save(game);
         System.out.println("Tallennettu peli: " + game);
         return "redirect:/games";
